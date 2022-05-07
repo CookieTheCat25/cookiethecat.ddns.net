@@ -20,8 +20,10 @@
     </div>
     <h1>CookieTheCat</h1>
     <div class="Card" id="Card">
-        <div class="Content">
-            <h4>Hi! I'm CookieTheCat, welcome to my website!</h4>
+        <div class="CardGradient">
+            <div class="Content">
+                <h4>Hi! I'm CookieTheCat, welcome to my website!</h4>
+            </div>
         </div>
     </div>
     <script>
@@ -98,13 +100,6 @@
         -webkit-backdrop-filter: blur(20px);
     }
 
-    .Content {
-        margin-bottom: -10px;
-        background-color: white;
-        padding: 40px 40px 700px 40px;
-        border-radius: 10px 10px 0 0;
-    }
-
     button {
         width: 20px;
         height: 20px;
@@ -138,11 +133,18 @@
         background-color: #78cae6;
         min-width: 600px;
         max-width: 100vw;
-        padding: 10px;
         min-height: 800px;
         transition-duration: .3s;
         transition-delay: .1s;
         border-radius: 20px 20px 0 0;
+        overflow: hidden;
+    }
+
+    .Content {
+        margin: 10px 10px 0px 10px;
+        background-color: white;
+        padding: 40px 40px 700px 40px;
+        border-radius: 10px 10px 0 0;
     }
 
     .Purple {
@@ -159,6 +161,12 @@
 
     .Orange {
         background-color: #f7a000; 
+    }
+
+    .CardGradient {
+        background-image: linear-gradient(to top left, rgba(0, 0, 0, 0.1),rgba(255, 255, 255, 0.5));
+        margin: -10px 0 0 0;
+        padding-top: 10px;
     }
 </style>
 </html>
