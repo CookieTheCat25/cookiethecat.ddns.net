@@ -8,64 +8,58 @@
     <link rel="shortcut icon" href="Cookie.ico">
 
 </head>
-<body>
+<body id="Body">
     <div class="navbar">
-        <img src="Cookie.ico">
+        <img src="Cookie.ico" class="Img">
         <div class="buttons">
-            <button style="background-color: #953fa1; color: white;" id="Purple"></button>
-            <button style="background-color: #78cae6;" id="Blue"></button>
-            <button style="background-color: #348a4d; color: white;" id="Green"></button>
-            <button style="background-color: #f7a000; color: white;" id="Orange"></button>
+            <button style="background-color: #ffffff; color: white;" id="Light" onclick="Light()"></button>
+            <button style="background-color: #000000; color: white;" id="Dark" onclick="Dark()"></button>
         </div>
     </div>
-    <h1>CookieTheCat</h1>
+    <h1 id="Title">CookieTheCat</h1>
     <div class="Card" id="Card">
-        <div class="CardGradient">
-            <div class="Content">
+        <div class="CardShadow" id="Shadow"></div>
+        <div class="Gradient">
+            <div class="Content" id="Content">
                 <h4>Hi! I'm CookieTheCat, welcome to my website!</h4>
             </div>
         </div>
     </div>
     <script>
-        const Purplee = document.getElementById("Purple");
-        const Orangee = document.getElementById("Orange");
-        const Greenn = document.getElementById("Green");
-        const Bluee = document.getElementById("Blue");
-        Purplee.addEventListener("click", Purple);
-        Orangee.addEventListener("click", Orange);
-        Greenn.addEventListener("click", Green);
-        Bluee.addEventListener("click", Blue);
-    
-        function Purple() {
-            var card = document.getElementById("Card")
-            card.classList.add("Purple")
-            card.classList.remove("Blue")
-            card.classList.remove("Green")
-            card.classList.remove("Orange")
+        function Light() {
+            var Body = document.body;
+            var Content = document.getElementById("Content");
+            var Shadow = document.getElementById("Shadow");
+            var Card = document.getElementById("Card");
+            var Title = document.getElementById("Title");
+            Body.classList.add("LightBody");
+            Body.classList.remove("DarkBody");
+            Content.classList.add("LightContent");
+            Content.classList.remove("DarkContent");
+            Shadow.classList.add("LightShadow");
+            Shadow.classList.remove("DarkShadow");
+            Card.classList.add("LightCard");
+            Card.classList.remove("DarkCard");
+            Title.classList.add("LightTitle");
+            Title.classList.remove("DarkTitle");
         }
 
-        function Blue() {
-            var card = document.getElementById("Card")
-            card.classList.remove("Purple")
-            card.classList.add("Blue")
-            card.classList.remove("Green")
-            card.classList.remove("Orange")
-        }
-
-        function Green() {
-            var card = document.getElementById("Card")
-            card.classList.remove("Purple")
-            card.classList.remove("Blue")
-            card.classList.add("Green")
-            card.classList.remove("Orange")
-        }
-
-        function Orange() {
-            var card = document.getElementById("Card")
-            card.classList.remove("Purple")
-            card.classList.remove("Blue")
-            card.classList.remove("Green")
-            card.classList.add("Orange")
+        function Dark() {
+            var Body = document.body;
+            var Content = document.getElementById("Content");
+            var Shadow = document.getElementById("Shadow");
+            var Card = document.getElementById("Card");
+            var Title = document.getElementById("Title");
+            Body.classList.remove("LightBody");
+            Body.classList.add("DarkBody");
+            Content.classList.remove("LightContent");
+            Content.classList.add("DarkContent");
+            Shadow.classList.remove("LightShadow");
+            Shadow.classList.add("DarkShadow");
+            Card.classList.remove("LightCard");
+            Card.classList.add("DarkCard");
+            Title.classList.remove("LightTitle");
+            Title.classList.add("DarkTitle");
         }
     </script>
 </body>
@@ -77,12 +71,21 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;  
+        align-items: center;
         margin: 0;
-        transform-origin:bottom
+        transform-origin: bottom;
+        /*background-color: #000;*/
     }
 
-    img {
+    body.LightBody {
+        background-color: rgb(255, 255, 255);
+    }
+
+    body.DarkBody {
+        background-color: rgb(0, 0, 0);
+    }
+
+    .Img {
         border-radius: 100%;
         width: 30px;
         height: 30px;
@@ -121,6 +124,15 @@
         margin: 50px;
         font-size: 40px;
         font-weight: 800;
+        color: black;
+    }
+
+    h1.LightTitle {
+        color: black;
+    }
+
+    h1.DarkTitle {
+        color: rgb(175, 175, 175) !important;
     }
 
     h4 {
@@ -128,45 +140,136 @@
         font-size: 20px;
     }
 
+    body, .Card, .CardShadow {
+        transition-duration: .3s;
+        transition-delay: .1s;
+    }
+
     .Card {
         box-shadow: 0px 0px 15px 5px #00000081;
-        background-color: #78cae6;
+        /*background-color: #78cae6;*/
         min-width: 600px;
         max-width: 100vw;
         min-height: 800px;
-        transition-duration: .3s;
-        transition-delay: .1s;
         border-radius: 20px 20px 0 0;
-        overflow: hidden;
+        /*overflow: hidden;*/
+        -webkit-animation: Gradient 5s ease infinite;
+        -moz-animation: Gradient 5s ease infinite;
+        animation: Gradient 5s ease infinite;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        z-index: -1;
+        position: relative;
+    }
+
+    .Card.LightCard {
+        box-shadow: 0px 0px 15px 5px #00000081;
+    }
+
+    .Card.DarkCard {
+        box-shadow: none;
+    }
+
+    .CardShadow {
+        -webkit-animation: Gradient 5s ease infinite;
+        -moz-animation: Gradient 5s ease infinite;
+        animation: Gradient 5s ease infinite;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        filter: blur(15px);
+        -webkit-filter: blur(15px);
+        z-index: -2;
+        box-sizing: border-box;
+        position: absolute;
+        top: -5px;
+        bottom: 0;
+        left: -5px;
+        right: -5px;
+        opacity: 0;
+    }
+
+    .CardShadow.LightShadow {
+        opacity: 0;
+    }
+
+    .CardShadow.DarkShadow {
+        opacity: 1 !important;
+    }
+
+    @-webkit-keyframes Gradient {
+        0% {
+            background-position:0
+        }
+
+        50% {
+            background-position:100%
+        }
+
+        to {
+            background-position:0
+        }
+    }
+
+    @-moz-keyframes Gradient {
+        0% {
+            background-position:0
+        }
+
+        50% {
+            background-position:100%
+        }
+
+        to {
+            background-position:0
+        }
+    }
+
+    @keyframes Gradient {
+        0% {
+            background-position:0
+        }
+
+        50% {
+            background-position:100%
+        }
+
+        to {
+            background-position:0
+        }
     }
 
     .Content {
         margin: 10px 10px 0px 10px;
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0.9);
         padding: 40px 40px 700px 40px;
         border-radius: 10px 10px 0 0;
+        z-index: -1;
     }
 
-    .Purple {
-        background-color: #953fa1; 
+    .Content, h1 {
+        transition-duration: .2s;
+        transition-delay: .2s;
     }
 
-    .Blue {
-        background-color: #78cae6;
+    .Content.LightContent {
+        background-color: rgba(255, 255, 255, 0.9);
     }
 
-    .Green {
-        background-color: #348a4d; 
-    }
-
-    .Orange {
-        background-color: #f7a000; 
+    .Content.DarkContent {
+        background-color: rgba(0, 0, 0, 0.925) !important;
+        color: rgb(175, 175, 175);
     }
 
     .CardGradient {
         background-image: linear-gradient(to top left, rgba(0, 0, 0, 0.1),rgba(255, 255, 255, 0.5));
         margin: -10px 0 0 0;
         padding-top: 10px;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
     }
 </style>
 </html>
